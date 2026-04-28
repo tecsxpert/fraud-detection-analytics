@@ -332,3 +332,87 @@ Context:
         "status": "success",
         "data": parsed_output
     })
+
+# =========================================================
+# 🔹 Endpoint 6: /batch-process
+# =========================================================
+@describe_bp.route("/batch-process", methods=["POST"])
+def batch_process():
+
+    data = request.get_json()
+
+    # 🔹 Validate request
+    if not data or "items" not in data:
+        return jsonify({
+            "status": "error",
+            "message": "items field is required"
+        }), 400
+
+    items = data["items"]
+
+    # 🔹 Validate type
+    if not isinstance(items, list):
+        return jsonify({
+            "status": "error",
+            "message": "items must be an array"
+        }), 400
+
+    # 🔹 Max 20 items
+    if len(items) > 20:
+        return jsonify({
+            "status": "error",
+            "message": "Maximum 20 items allowed"
+        }), 400
+
+    logging.info(f"/batch-process called with {len(items)} items")
+
+    results = []
+
+    for item in items:
+
+        try:
+
+            # 🔹 Delay 100ms
+            time.sleep(0.1)
+
+            # 🔹 RAG context
+            context_docs = query_documents(item)
+
+            context = ""
+
+            if context_docs and len(context_docs) > 0:
+                context = "\n".join(context_docs[0])
+
+            # 🔹 Prompt
+            base_prompt = load_prompt().replace("{text}", item)
+
+            final_prompt = f"""
+Context:
+{context}
+
+{base_prompt}
+"""
+
+            ai_output = generate_response(final_prompt)
+
+            parsed_output = json.loads(ai_output)
+
+        except Exception as e:
+
+            logging.error(f"/batch-process item error: {str(e)}")
+
+            parsed_output = {
+                "risk_level": "Unknown",
+                "explanation": "Error processing item",
+                "key_indicators": []
+            }
+
+        results.append({
+            "input": item,
+            "analysis": parsed_output
+        })
+
+    return jsonify({
+        "status": "success",
+        "results": results
+    })
