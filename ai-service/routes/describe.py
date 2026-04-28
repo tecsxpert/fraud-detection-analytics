@@ -28,6 +28,13 @@ def load_prompt():
 def load_stream_prompt():
     with open("prompts/report_stream_prompt.txt", "r") as file:
         return file.read()
+    
+# =========================================================
+# 🔹 Utility: Load Analyse Document Prompt
+# =========================================================
+def load_analyse_prompt():
+    with open("prompts/analyse_document_prompt.txt", "r") as file:
+        return file.read()
 
 
 # =========================================================
@@ -266,3 +273,62 @@ Context:
             "status": "error",
             "message": "Streaming failed"
         }), 500
+    
+
+# =========================================================
+# 🔹 Endpoint 5: /analyse-document
+# =========================================================
+@describe_bp.route("/analyse-document", methods=["POST"])
+def analyse_document():
+
+    data = request.get_json()
+
+    if not data or "text" not in data:
+        return jsonify({
+            "status": "error",
+            "message": "text field is required"
+        }), 400
+
+    text = data["text"]
+
+    logging.info(f"/analyse-document called with input: {text}")
+
+    # 🔹 Load prompt
+    base_prompt = load_analyse_prompt().replace("{text}", text)
+
+    # 🔹 RAG context
+    context_docs = query_documents(text)
+
+    context = ""
+
+    if context_docs and len(context_docs) > 0:
+        context = "\n".join(context_docs[0])
+
+    # 🔹 Final prompt
+    final_prompt = f"""
+Context:
+{context}
+
+{base_prompt}
+"""
+
+    try:
+
+        ai_output = generate_response(final_prompt)
+
+        parsed_output = json.loads(ai_output)
+
+    except Exception as e:
+
+        logging.error(f"/analyse-document error: {str(e)}")
+
+        parsed_output = {
+            "summary": "Unable to analyse document",
+            "risks": [],
+            "key_findings": []
+        }
+
+    return jsonify({
+        "status": "success",
+        "data": parsed_output
+    })
