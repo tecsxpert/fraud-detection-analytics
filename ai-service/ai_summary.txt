@@ -1,0 +1,102 @@
+Fraud Detection AI API — Summary
+
+Project Overview:
+This project is an AI-powered fraud detection backend service built using Flask. 
+It analyzes financial or user activity text inputs and detects potential fraud 
+using Large Language Models (LLMs) with Retrieval-Augmented Generation (RAG).
+
+The system is designed to provide:
+- Fraud risk analysis
+- AI-based reasoning
+- Real-time report generation
+- Batch processing support
+- Context-aware responses using vector database
+
+--------------------------------------------------
+
+API Endpoints:
+
+1. /analyse (POST)
+Performs fraud risk analysis on input text.
+Returns risk level, explanation, and key indicators.
+
+2. /batch (POST)
+Processes multiple fraud-related inputs at once.
+Useful for bulk transaction analysis.
+
+3. /categorise (POST)
+Classifies the input into a fraud category.
+Example: Transaction Fraud, Login Fraud, etc.
+
+4. /describe (POST)
+Provides detailed AI reasoning behind fraud detection.
+Includes explanation, key indicators, and risk level.
+
+5. /generate-report (POST)
+Generates a structured fraud report asynchronously.
+Returns a job_id for tracking.
+
+6. /job-status/{job_id} (GET)
+Fetches the status and result of the generated report.
+
+7. /report-stream (GET)
+Streams fraud report in real-time using Server-Sent Events (SSE).
+
+8. /query (POST)
+RAG-based endpoint to answer fraud-related questions using context.
+
+9. /recommend (POST)
+Generates fraud prevention recommendations based on input.
+
+10. /health (GET)
+Checks system health and performance metrics.
+
+11. /webhook (POST)
+Receives async job results from report generation.
+
+--------------------------------------------------
+
+Tech Stack (Detailed):
+
+Backend:
+Flask is used as the web framework to build REST APIs. 
+It is lightweight and suitable for microservices.
+
+AI Model:
+Groq LLM (LLaMA 3.3 70B) is used for fast and accurate reasoning.
+It enables real-time AI responses with low latency.
+
+Embeddings:
+Sentence-transformers convert text into vector embeddings 
+to enable semantic similarity search.
+
+Vector Database:
+ChromaDB stores embeddings and is used for retrieving 
+relevant context in RAG pipeline.
+
+RAG (Retrieval-Augmented Generation):
+Before generating responses, relevant context is retrieved 
+from ChromaDB to improve accuracy and consistency.
+
+Streaming:
+Server-Sent Events (SSE) is used for real-time streaming 
+of generated reports.
+
+Async Processing:
+Background jobs are used for report generation to handle 
+long-running tasks efficiently.
+
+Deployment:
+The service is deployed on Railway with public API access.
+
+--------------------------------------------------
+
+Key Features:
+
+- AI-powered fraud detection
+- Context-aware responses using RAG
+- Real-time streaming output
+- Batch processing capability
+- Async job handling with webhook support
+- Structured JSON responses
+- Production-ready API design
