@@ -1,10 +1,29 @@
 from flask import Flask, request, jsonify
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from sanitize import sanitize_input
+
+from ai_service.sanitize import sanitize_input   # ✅ FIXED
+from .routes.categorise import categorise_bp
+from .routes.query import query_bp
+#from .routes.describe import describe_bp
+
+
 import sqlite3
 
 app = Flask(__name__)
+
+app.config["RATELIMIT_HEADERS_ENABLED"] = True   # ✅ ADD THIS
+
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=["100 per minute"]
+)
+
+
+app.register_blueprint(categorise_bp)
+app.register_blueprint(query_bp)
+#app.register_blueprint(describe_bp)
 
 @app.after_request
 def add_security_headers(response):
@@ -62,14 +81,6 @@ def save_transaction(amount, location, text, result):
     conn.close()
 
 
-# -----------------------------
-# Rate limiter
-# -----------------------------
-limiter = Limiter(
-    key_func=get_remote_address,
-    default_limits=["30 per minute"]
-)
-limiter.init_app(app)
 
 
 # -----------------------------
