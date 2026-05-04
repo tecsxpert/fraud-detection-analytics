@@ -1,461 +1,205 @@
-# AI Service — Fraud Detection Analytics
+# 🚀 Fraud Detection AI API
 
-## Overview
-
-This AI service is a Flask-based backend microservice responsible for:
-
-* Fraud risk analysis
-* Recommendation generation
-* Report generation
-* Document analysis
-* Batch fraud processing
-* RAG-based contextual retrieval using ChromaDB
-* AI-powered reasoning using Groq LLM
-* SSE streaming for real-time report generation
-
-The service exposes REST APIs that can later be integrated with:
-
-* Spring Boot backend
-* React frontend
-* Dashboard systems
-* Monitoring services
+AI-powered fraud analysis service using Groq + RAG + Streaming.
 
 ---
 
-# Tech Stack
+## 📌 Overview
 
-| Component         | Technology                     |
-| ----------------- | ------------------------------ |
-| Backend Framework | Flask                          |
-| AI Provider       | Groq                           |
-| Embeddings        | sentence-transformers          |
-| Vector Database   | ChromaDB                       |
-| RAG               | Retrieval-Augmented Generation |
-| Streaming         | Server-Sent Events (SSE)       |
-| Testing           | pytest                         |
+This service provides:
+
+- Fraud risk analysis
+- AI-based recommendations
+- Batch processing
+- Async report generation
+- RAG-based contextual answers
+- Real-time streaming (SSE)
+- Redis caching with fallback
 
 ---
 
-# Project Structure
+## ⚙️ Tech Stack
 
-```plaintext
+- Flask (Backend)
+- Groq LLM (AI)
+- ChromaDB (Vector DB)
+- Sentence Transformers (Embeddings)
+- Redis (Caching)
+- SSE (Streaming)
+
+---
+
+## 📁 Project Structure
+
+```
 ai-service/
-│
 ├── app.py
-├── requirements.txt
-├── .env
-│
-├── prompts/
-│   ├── describe_prompt.txt
-│   ├── report_stream_prompt.txt
-│   └── analyse_document_prompt.txt
-│
 ├── routes/
-│   └── describe.py
-│
 ├── services/
-│   ├── groq_client.py
-│   └── chroma_client.py
-│
+├── prompts/
 ├── tests/
-│   └── test_api.py
-│
+├── requirements.txt
 └── README.md
 ```
 
 ---
 
-# Prerequisites
+# 📡 API Documentation — Fraud Detection AI
 
-Before running the service, ensure the following are installed:
+## 🔍 Interactive API Explorer
 
-* Python 3.10+
-* pip
-* virtualenv (recommended)
-* Git
+The image below shows the **live Swagger UI** of the deployed Fraud Detection AI service.
+It provides a complete overview of all available endpoints and allows real-time testing of requests and responses.
 
-Optional:
+![API Overview](output_screenshots/main_overview.png)
 
-* Postman for API testing
-* VS Code
+### 💡 What this includes:
 
----
+- 📊 **Analyse** — Fraud risk detection using AI
+- 📦 **Batch** — Process multiple fraud inputs
+- 🏷 **Categorise** — Classify fraud type
+- 🧠 **Describe** — Detailed fraud reasoning
+- 📄 **Report** — Async report generation
+- ⚡ **Stream** — Real-time SSE report streaming
+- 🔎 **Query** — RAG-based contextual answers
+- 🛡 **Recommend** — Prevention actions
+- ❤️ **Health** — System monitoring
+- 🔔 **Webhook** — Async callbacks
 
-# Setup Instructions
+This interface is used for:
 
-## 1. Clone Repository
-
-```bash
-git clone <repository-url>
-cd ai-service
-```
-
----
-
-## 2. Create Virtual Environment
-
-### Windows (PowerShell)
-
-```powershell
-python -m venv .venv
-```
+- Testing APIs during development
+- Validating request/response formats
+- Demonstrating system capabilities in real-time
 
 ---
 
-## 3. Activate Virtual Environment
+## 🔌 API Endpoints
 
-### Windows (PowerShell)
+### 🟢 Analyse
 
-```powershell
-.\.venv\Scripts\Activate
-```
-
-Expected:
-
-```powershell
-(.venv)
-```
+![Analyse Request](output_screenshots/analyse_request.png)
+![Analyse Response](output_screenshots/analyse_response.png)
 
 ---
 
-## 4. Install Dependencies
+### 🟢 Batch
+
+![Batch Request](output_screenshots/batch_request.png)
+![Batch Response](output_screenshots/batch_response.png)
+
+---
+
+### 🟢 Categorise
+
+![Categorise Request](output_screenshots/categorise_request.png)
+![Categorise Response](output_screenshots/categorise_response.png)
+
+---
+
+### 🟢 Describe
+
+![Describe Request](output_screenshots/describe_request.png)
+![Describe Response](output_screenshots/describe_response.png)
+
+---
+
+### 🟢 Generate Report
+
+![Report Request](output_screenshots/generate_report_request.png)
+![Report Response](output_screenshots/generate_report_response.png)
+
+---
+
+### 🟢 Job Status
+
+![Job Status Request](output_screenshots/job_status_request.png)
+![Job Status Response](output_screenshots/job_status_response.png)
+
+---
+
+### 🟢 Health
+
+![Health Request](output_screenshots/health_request.png)
+![Health Response](output_screenshots/health_response.png)
+
+---
+
+### 🟢 Query (RAG)
+
+![Query Request](output_screenshots/query_request.png)
+![Query Response](output_screenshots/query_response.png)
+
+---
+
+### 🟢 Recommend
+
+![Recommend Request](output_screenshots/recommend_request.png)
+![Recommend Response](output_screenshots/recommend_response.png)
+
+---
+
+### 🟢 Report Stream (SSE)
+
+![Stream Request](output_screenshots/report_stream_request.png)
+![Stream Response](output_screenshots/report_stream_response.png)
+
+---
+
+### 🟢 Webhook
+
+![Webhook Request](output_screenshots/webhook_request.png)
+![Webhook Response](output_screenshots/webhook_response.png)
+
+---
+
+## ⚡ Features
+
+- ⚡ Fast AI responses using Groq
+- 📊 Structured JSON outputs
+- 🔁 Redis caching for performance
+- 📡 Streaming support (SSE)
+- 🧠 RAG for contextual intelligence
+- 🔒 Secure environment configuration
+
+---
+
+## 🚀 Run Locally
 
 ```bash
 pip install -r requirements.txt
-```
-
----
-
-# Environment Variables
-
-Create a `.env` file in the root directory.
-
-## Example
-
-```env
-GROQ_API_KEY=your_groq_api_key
-```
-
----
-
-# Running the Application
-
-Start Flask server:
-
-```bash
 python app.py
 ```
 
-Expected output:
-
-```plaintext
-Running on http://127.0.0.1:5000
-```
-
 ---
 
-# API Reference
-
----
-
-# 1. Health Endpoint
-
-## GET `/health`
-
-Checks service availability.
-
-### Response
-
-```json
-{
-  "status": "ok"
-}
-```
-
----
-
-# 2. Describe Endpoint
-
-## POST `/describe`
-
-Performs fraud risk assessment for a given activity.
-
-### Request
-
-```json
-{
-  "text": "User made multiple transactions from different countries"
-}
-```
-
-### Response
-
-```json
-{
-  "status": "success",
-  "data": {
-    "risk_level": "High",
-    "explanation": "Multiple international transactions indicate elevated fraud risk.",
-    "key_indicators": [
-      "Multiple countries",
-      "Rapid transaction frequency",
-      "Unusual activity"
-    ]
-  },
-  "generated_at": "2026-04-27T11:38:36.696335"
-}
-```
-
----
-
-# 3. Recommend Endpoint
-
-## POST `/recommend`
-
-Returns fraud mitigation recommendations.
-
-### Request
-
-```json
-{
-  "text": "Multiple failed login attempts detected"
-}
-```
-
-### Response
-
-```json
-{
-  "status": "success",
-  "data": [
-    {
-      "action_type": "BLOCK_TRANSACTION",
-      "description": "Block suspicious activity",
-      "priority": "HIGH"
-    },
-    {
-      "action_type": "VERIFY_IDENTITY",
-      "description": "Request additional verification",
-      "priority": "MEDIUM"
-    }
-  ]
-}
-```
-
----
-
-# 4. Generate Report Endpoint
-
-## POST `/generate-report`
-
-Generates structured fraud analysis reports.
-
-### Request
-
-```json
-{
-  "text": "User transferred money rapidly across countries"
-}
-```
-
-### Response
-
-```json
-{
-  "status": "success",
-  "data": {
-    "title": "Suspicious Transaction Activity",
-    "executive_summary": "Multiple rapid international transfers detected.",
-    "overview": "The activity shows patterns associated with fraudulent behavior.",
-    "top_items": [
-      "Rapid transfers",
-      "Cross-border activity"
-    ],
-    "recommendations": [
-      "Verify identity",
-      "Monitor account"
-    ]
-  }
-}
-```
-
----
-
-# 5. Generate Report Stream Endpoint
-
-## GET `/generate-report-stream`
-
-Streams fraud report content progressively using Server-Sent Events (SSE).
-
-### Request
-
-```http
-GET /generate-report-stream?text=User%20made%20multiple%20transactions
-```
-
-### Stream Example
-
-```plaintext
-data: Fraud Report
-
-data: Executive Summary:
-
-data: Multiple suspicious transactions detected.
-
-data: [DONE]
-```
-
----
-
-# 6. Analyse Document Endpoint
-
-## POST `/analyse-document`
-
-Analyzes larger text documents and extracts fraud-related findings.
-
-### Request
-
-```json
-{
-  "text": "Large cross-border transactions detected from multiple IP addresses"
-}
-```
-
-### Response
-
-```json
-{
-  "status": "success",
-  "data": {
-    "summary": "Suspicious financial activity detected.",
-    "risks": [
-      "Money laundering",
-      "Unauthorized access"
-    ],
-    "key_findings": [
-      "Rapid international transfers",
-      "Multiple IP addresses",
-      "High transaction volume"
-    ]
-  }
-}
-```
-
----
-
-# 7. Batch Process Endpoint
-
-## POST `/batch-process`
-
-Processes up to 20 fraud analysis items sequentially.
-
-### Request
-
-```json
-{
-  "items": [
-    "User transferred money rapidly across countries",
-    "Multiple failed login attempts detected"
-  ]
-}
-```
-
-### Response
-
-```json
-{
-  "status": "success",
-  "results": [
-    {
-      "input": "User transferred money rapidly across countries",
-      "analysis": {
-        "risk_level": "High",
-        "explanation": "Potential fraud activity detected.",
-        "key_indicators": [
-          "Cross-border activity",
-          "Rapid transactions"
-        ]
-      }
-    }
-  ]
-}
-```
-
----
-
-# RAG Pipeline
-
-The service uses Retrieval-Augmented Generation (RAG):
-
-1. Documents are chunked
-2. Embeddings are generated using sentence-transformers
-3. Embeddings are stored in ChromaDB
-4. Relevant context is retrieved before AI generation
-
-This improves:
-
-* fraud context understanding
-* response quality
-* consistency
-
----
-
-# Running Tests
-
-Run pytest suite:
+## 🧪 Testing
 
 ```bash
 pytest
 ```
 
-Expected:
+---
 
-```plaintext
-10 passed
-```
+## 📈 Performance
+
+- p50, p95, p99 latency tested
+- Redis cache hit/miss validated
+- Stable under multiple requests
 
 ---
 
-# Error Handling
+## 👨‍💻 Authors
 
-The service includes:
-
-* graceful fallback handling
-* structured error responses
-* logging support
-* invalid input validation
-
-### Example Error Response
-
-```json
-{
-  "status": "error",
-  "message": "text field is required"
-}
-```
+- AI Developer 1
+- AI Developer 2
 
 ---
 
-# Notes
+## 📌 Notes
 
-* Responses are returned in structured JSON format
-* SSE streaming is frontend-compatible using EventSource
-* API contracts are designed to remain stable for future integration
-* Groq failures are handled gracefully with fallback responses
-
----
-
-# Future Integration
-
-The AI service is designed for integration with:
-
-* Spring Boot backend services
-* React frontend dashboards
-* Async job processing systems
-* Monitoring pipelines
+- `.env` is not committed (security reasons)
+- `.env.example` provided for setup
+- Fully ready for Docker & Railway deployment
 
 ---
-
-# Author
-
-AI Developer 1 — Fraud Detection Analytics Project

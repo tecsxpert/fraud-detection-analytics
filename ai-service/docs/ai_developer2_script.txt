@@ -1,0 +1,19 @@
+AI Developer 2 — Day 20 (Demo)
+
+Task:
+Explain the AI service tech stack clearly within 60 seconds and demonstrate the health endpoint.
+
+What to Explain:
+- Flask is used as the backend framework to build REST APIs.
+- Groq LLM (LLaMA 3.3) is used for fast AI reasoning and real-time fraud analysis.
+- RAG (Retrieval-Augmented Generation) improves responses by fetching relevant context before generating output.
+- ChromaDB stores embeddings and helps retrieve similar fraud-related information.
+- This overall system provides fast, accurate, and context-aware fraud detection.
+
+Demo Step:
+- Open the /health endpoint in browser.
+- Show the response to confirm the system is running properly.
+
+Goal:
+- Deliver a clear and confident explanation.
+- Complete explanation and demo within 60 seconds.

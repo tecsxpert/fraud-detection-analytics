@@ -1,0 +1,29 @@
+AI Talking Points Card
+
+Groq (LLM):
+- Groq is used to run large language models with very high speed and low latency.
+- It helps generate real-time AI responses for fraud detection.
+- The model used (LLaMA 3.3 70B) provides strong reasoning capability.
+- This allows the system to quickly analyze suspicious activities.
+- Overall, it improves performance and user experience in live scenarios.
+
+RAG (Retrieval-Augmented Generation):
+- RAG enhances AI responses by retrieving relevant context before generating output.
+- Instead of relying only on the model, it uses stored knowledge for better accuracy.
+- This reduces incorrect or generic responses from the AI.
+- It is especially useful for domain-specific tasks like fraud detection.
+- It ensures more consistent and reliable outputs.
+
+ChromaDB (Vector Database):
+- ChromaDB is used to store text data in the form of embeddings (vectors).
+- These embeddings help in finding similar or relevant information quickly.
+- It acts as the knowledge base for the RAG pipeline.
+- When a query is received, relevant data is fetched from ChromaDB.
+- This improves the quality of AI-generated responses.
+
+Prompt Engineering:
+- Prompt engineering is the process of designing effective inputs for the AI model.
+- Well-structured prompts guide the model to generate accurate results.
+- It helps control the format and quality of output.
+- In this project, prompts are designed for fraud analysis and reporting.
+- Better prompts lead to better explanations and recommendations.
