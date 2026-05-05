@@ -3,3 +3,4 @@
 {"amount": 70000, "location": "Brazil", "text": "payment", "result": {"status": "suspicious", "reason": "Unusual location", "risk_score": 70}}
 {"amount": 100000, "location": "india", "text": "money", "result": {"status": "suspicious", "reason": "High transaction amount", "risk_score": 50}}
 {"amount": 1000, "location": "india", "text": "payment", "result": {"status": "safe", "reason": "Normal transaction", "risk_score": 0}}
+
