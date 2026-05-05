@@ -1,0 +1,21 @@
+{
+  "name": "fraud-detection-analytics",
+  "version": "1.0.0",
+  "description": "<<<<<<< HEAD\r <<<<<<< HEAD\r # fraud-detection-system\r Fraud Detection System Project\r =======\r # fraud-detection-analytics\r Fraud-Detection-Analytics Project\r >>>>>>> be34a79c72a8ac5280548035e971e6ca4288d484\r =======\r # Fraud Detection Analytics\r >>>>>>> 8b56dea4943e3938c42ad89ae3d6eef791f34fac",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manisha-Gowda/fraud-detection-analytics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Manisha-Gowda/fraud-detection-analytics/issues"
+  },
+  "homepage": "https://github.com/Manisha-Gowda/fraud-detection-analytics#readme"
+}
