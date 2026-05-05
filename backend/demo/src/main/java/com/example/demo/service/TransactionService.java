@@ -1,17 +1,30 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Transaction;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public interface TransactionService {
+@Service
+public class TransactionService {
 
-    Transaction saveTransaction(Transaction transaction);
+    public Transaction saveTransaction(Transaction transaction) {
+        return transaction;
+    }
 
-    List<Transaction> getAllTransactions();
+    public List<Transaction> getAllTransactions() {
+        return new ArrayList<>();
+    }
 
-    Transaction getTransactionById(Long id);
+    public Transaction getTransactionById(Long id) {
+        return new Transaction();
+    }
 
-    Transaction updateTransaction(Long id, Transaction transaction);
+    public Transaction updateTransaction(Long id, Transaction transaction) {
+        return transaction;
+    }
 
-    void deleteTransaction(Long id);
+    public void deleteTransaction(Long id) {
+    }
 }
