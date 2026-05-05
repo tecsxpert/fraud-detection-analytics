@@ -1,46 +1,8 @@
-.env
-# ========================
-# ENV (IMPORTANT)
-# ========================
-.env
-.env.*
-
-# ========================
-# PYTHON CACHE
-# ========================
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# ========================
-# VIRTUAL ENVIRONMENTS
-# ========================
-venv/
-env/
-.venv/
-myvenv/
-
-# ========================
-# DATABASE / VECTOR DB
-# ========================
-chroma_data/
-*.db
-*.sqlite3
-
-# ========================
-# LOGS
-# ========================
-*.log
-
-# ========================
-# TEST / COVERAGE
-# ========================
+node_modules/
+build/
+dist/
 coverage/
-htmlcov/
-
-# ========================
-# MISC
-# ========================
-*.swp
-*.swo
+.DS_Store
+*.log
+.env*
+!.env.example

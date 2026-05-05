@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #1B4F8A;
+  --font-sans: "Arial", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f8fafc] text-slate-900 font-sans antialiased;
+  }
+}
+
+.markdown-body {
+  @apply prose prose-slate max-w-none;
+}

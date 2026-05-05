@@ -1,0 +1,8 @@
+{
+  "name": "Enterprise Analytics Pro",
+  "description": "A production-grade analytics and management platform with AI-powered insights, real-time streaming reports, and advanced data visualization.",
+  "requestFramePermissions": [
+    "display-capture"
+  ],
+  "majorCapabilities": []
+}
