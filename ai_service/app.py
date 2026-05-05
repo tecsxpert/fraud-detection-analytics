@@ -12,6 +12,10 @@ import sqlite3
 
 app = Flask(__name__)
 
+@app.route("/")
+def home():
+    return "Fraud Detection API Running"
+
 app.config["RATELIMIT_HEADERS_ENABLED"] = True   # ✅ ADD THIS
 
 limiter = Limiter(
@@ -25,10 +29,13 @@ app.register_blueprint(categorise_bp)
 app.register_blueprint(query_bp)
 #app.register_blueprint(describe_bp)
 
+
 @app.after_request
 def add_security_headers(response):
+    response.headers["Content-Security-Policy"] = "default-src 'self'"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
+    response.headers["Server"] = "SecureServer"  # hide real server
     return response
 
 # -----------------------------

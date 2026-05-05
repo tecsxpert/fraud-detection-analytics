@@ -158,3 +158,20 @@ System is safe for demo usage.
 | Unusual Location | Brazil        | suspicious | PASS   |
 
 All test cases passed successfully.
+
+
+## 🔒 Security Testing (OWASP ZAP)
+
+We performed automated security testing using OWASP ZAP.
+
+### Scan Results
+![ZAP Scan](docs/security/zap_scan_result.png)
+
+### Findings
+- Server version disclosure
+- Missing CSP header
+
+### Fixes Implemented
+- Added Content-Security-Policy
+- Added X-Frame-Options, X-Content-Type-Options
+- Hid server header
